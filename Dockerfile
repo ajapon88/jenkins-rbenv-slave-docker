@@ -15,6 +15,8 @@ ADD ./default-gems "${RBENV_ROOT}/default-gems"
 
 RUN echo 'export PATH=${RBENV_ROOT}/bin:${PATH}' >> /etc/profile.d/rbenv.sh
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
+ADD ./auto-install-ruby-with-rbenv.sh /tmp/auto-install-ruby-with-rbenv.sh
+RUN cat /tmp/auto-install-ruby-with-rbenv.sh >> /etc/profile.d/rbenv.sh
 
 RUN chgrp -R jenkins "${RBENV_ROOT}"
 RUN chmod -R g+rwxXs "${RBENV_ROOT}"
