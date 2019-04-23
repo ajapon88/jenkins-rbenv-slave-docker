@@ -5,6 +5,7 @@ function auto_install_rbenv() {
     [ -n "${RBENV_ROOT}" ] && rbenv_root=${RBENV_ROOT} || rbenv_root=${HOME}/.rbenv
     if [[ ! -d "${rbenv_root}/versions/$ruby_version" ]]; then
       echo "rbenv install $ruby_version"
+      rbenv update
       rbenv install "${ruby_version}"
       return $?
     fi
